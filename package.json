@@ -4,7 +4,9 @@
   "description": "FreeCodeCamp project",
   "main": "server.js",
   "scripts": {
-    "test": "node server.js"
+    "start": "node server.js",
+    "start-watch": "nodemon server.js"
+
   },
   "author": "Tiago Valverde",
   "license": "ISC",
