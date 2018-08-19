@@ -8,17 +8,179 @@
     <title>{{pageTitle}}</title>
 
     <style>
+        :root {
+            --color-dark-grey: #353C41;
+            --color-dark-green: #5B796B;
+            --color-light-grey-green: rgb(211, 220, 216);
+            --color-white: #E4F4F3;
+            --color-light-brown: #B3B094;
+        }
+
         body {
             margin: 0;
             padding: 0;
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            background: #e7eef4;
+            color: var(--color-dark-grey);
+            background: white;
+        }
+
+        input[type=text] {
+            all: unset;
+            background: var(--color-light-grey-green);
+            border: none;
+            padding: 5px 5px 5px 5px;
+            border-radius: 3px;
+            margin: 5px;
+            color: black;
+            -webkit-box-shadow: inset 8px 8px 18px -7px rgba(0, 0, 0, 0.42);
+            -moz-box-shadow: inset 8px 8px 18px -7px rgba(0, 0, 0, 0.42);
+            box-shadow: inset 8px 8px 18px -7px rgba(0, 0, 0, 0.42);
+        }
+
+        input[type=text]::placeholder,
+        input[type=text]::-ms-input-placeholder {
+            color: var(--color-dark-green);
+        }
+
+
+        input[type=submit] {
+            all: unset;
+            background: var(--color-dark-green);
+            padding: 5px;
+            border-radius: 5px;
+            -webkit-box-shadow: 9px 12px 19px -5px rgba(0, 0, 0, 0.31);
+            -moz-box-shadow: 9px 12px 19px -5px rgba(0, 0, 0, 0.31);
+            box-shadow: 9px 12px 19px -5px rgba(0, 0, 0, 0.31);
+            border: none;
+            color: white;
+
+        }
+
+        input[type=submit]:hover {
+            transform: scale(1.1);
+            -webkit-box-shadow: 9px 12px 10px -5px rgba(0, 0, 0, 0.31);
+            -moz-box-shadow: 9px 12px 10px -5px rgba(0, 0, 0, 0.31);
+            box-shadow: 9px 12px 10px -5px rgba(0, 0, 0, 0.31);
+        }
+
+        input[type=submit]:active {
+            transform: translateX(1px) translateY(2px);
+            -webkit-box-shadow: 9px 12px 10px -5px rgba(0, 0, 0, 0.31);
+            -moz-box-shadow: 9px 12px 10px -5px rgba(0, 0, 0, 0.31);
+            box-shadow: 9px 12px 10px -5px rgba(0, 0, 0, 0.31);
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            width: 70%;
+            margin: auto;
+        }
+
+        .content section {
+            background: var(--color-dark-grey);
+            color: var( --color-white);
+            padding: 10px 15px 25px 15px;
+            border-radius: 5px;
+            -webkit-box-shadow: 9px 12px 19px -5px rgba(0, 0, 0, 0.31);
+            -moz-box-shadow: 9px 12px 19px -5px rgba(0, 0, 0, 0.31);
+            box-shadow: 9px 12px 19px -5px rgba(0, 0, 0, 0.31);
+            margin: 10px 0px 10px 0px;
+        }
+
+        .content section h3 {
+            color: white;
+        }
+
+        .content section p {
+            display: inline-block;
+            margin: 10px 5px 10px 5px;
+            background: var(--color-light-brown);
+            padding: 5px;
+            color: var(--color-dark-grey);
+            border-radius: 5px;
+
+
+        }
+
+        .content-add-exercises form input[type=submit] {
+            display: block;
+            margin: 10px 5px 5px 5px;
+
+        }
+
+        footer {
+            display: flex;
+            justify-content: center;
+        }
+
+        footer p {
+            font-weight: 500;
+        }
+
+        footer p a {
+            all: unset;
+            text-decoration: underline;
+        }
+
+        footer p a:hover {
+            cursor: pointer;
+
+            font-weight: 600;
+        }
+
+        @media(max-width:480px) {
+            .content-new-user form input[type=submit] {
+                margin: 10px 5px 5px 5px;
+
+            }
         }
     </style>
 </head>
 
 <body>
-
+    <header>
+        <h1>Exercise Tracker API</h1>
+    </header>
+    <main class="content">
+        <section class="content-new-user">
+            <h3>Create New user</h3>
+            <p>POST /api/exercise/newuser</p>
+            <form action="">
+                <input type="text" name="username" id="username" placeholder="username">
+                <input type="submit" value="Submit">
+            </form>
+        </section>
+        <section class="content-add-exercises">
+            <h3>Add exercises</h3>
+            <p>POST /api/exercise/add</p>
+            <form action="">
+                <input type="text" name="userId" id="userId" placeholder="userId*">
+                <input type="text" name="description" id="description" placeholder="description*">
+                <input type="text" name="duration" id="duration" placeholder="duration* (mins)">
+                <input type="text" name="date" id="date" placeholder="date (yyyy-mm-dd)">
+                <input type="submit" value="Submit">
+            </form>
+        </section>
+        <section class="content-get-log">
+            <h3>Get user's exercise log</h3>
+            <p>
+                <span>GET /api/exercise/log?{userId}[&from][&to][&limit]</span>
+            </p>
+            <p>{} = required</p>
+            <p>[] = optional</p>
+        </section>
+    </main>
+    <footer>
+        <p>Camper:
+            <a href="https://www.freecodecamp.org/tiagovalverde" target="_blank">tiagovalverde</a>
+        </p>
+    </footer>
 </body>
 
 </html>
