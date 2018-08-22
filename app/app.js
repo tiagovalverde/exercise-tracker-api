@@ -3,7 +3,9 @@ const bodyParser = require('body-parser');
 const hbs = require('hbs');
 
 //schema
-const Tracker = require('./models/tracker');
+const Exercise = require('./models/exercise');
+// routes
+const exerciseRoutes = require('./routes/exercises');
 // mogodb connect
 let {mongoose} = require('./db/mongoose');
 
@@ -34,11 +36,8 @@ app.use((req, res, next) => {
     next();
 });
 
-//POST /api/exercise/new-user
 
-//POST /api/exercise/add
-
-//GET /api/exercise/log?{userId}[&from][&to][&limit]
+app.use('/api/exercise', exerciseRoutes);
 
 module.exports = app;
 
