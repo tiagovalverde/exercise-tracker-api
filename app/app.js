@@ -40,4 +40,3 @@ app.use((req, res, next) => {
 app.use('/api/exercise', exerciseRoutes);
 
 module.exports = app;
-
