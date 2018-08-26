@@ -49,7 +49,7 @@ router.post('/add', addExerciseValidation,  (req, res) => {
     let exerciseLog = {
         description: req.body.description,
         duration: req.body.duration,
-        date: req.body.date
+        date: moment(req.body.date).toDate()
     };
 
     Exercise
@@ -63,12 +63,12 @@ router.post('/add', addExerciseValidation,  (req, res) => {
             }
 
             doc.log.push(exerciseLog);
-            console.log(doc);
+
             Exercise
                 .updateOne({_id: req.body.userId}, doc)
                 .then((response) => {
-                    console.log(response);
                     if(response.nModified === 1) {
+
                         res.status(200).json({
                             sucess: true, 
                             message: 'Exercise added',
@@ -76,10 +76,7 @@ router.post('/add', addExerciseValidation,  (req, res) => {
                             username: doc.username,
                             description: exerciseLog.description,
                             duration: exerciseLog.duration,
-                            date: moment(exerciseLog.date, 'lll')
-                            
-                            
-
+                            date: moment(exerciseLog.date).format('ddd MMM DD YYYY')
                         });
                     }
                 })
@@ -89,12 +86,4 @@ router.post('/add', addExerciseValidation,  (req, res) => {
         });
 });
 
-module.exports = router;
-
-// {
-//     username: "tshadow",
-//     description: "lundges",
-//     duration: 5,
-//     _id: "BkjJzC387",
-//     date: "Wed Aug 22 2018"
-//     }
+module.exports = router;    

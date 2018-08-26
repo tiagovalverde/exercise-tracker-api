@@ -10,10 +10,15 @@ const exerciseSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
-    log: {
-        type: Array,
-        default: []
-    }
+    log: [
+        {
+            description: String,
+            duration: Number,
+            date: Date
+        },
+    ]
 });
 
 module.exports = mongoose.model('Exercise', exerciseSchema);
+
+//5b8306736fca4d4094b9ba3c
