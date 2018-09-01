@@ -19,6 +19,15 @@ const exerciseSchema = mongoose.Schema({
     ]
 });
 
+// getLogs
+
+// getLogsByDateRange
+
+// getLogsByDateFrom
+
+// getLogsByDateTo
+
+
 module.exports = mongoose.model('Exercise', exerciseSchema);
 
 //5b8306736fca4d4094b9ba3c

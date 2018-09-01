@@ -4,7 +4,12 @@ const router = express.Router();
 const moment = require('moment');
 
 
-const {addExerciseValidation} = require('../middlewares/validation-middleware');
+const {
+    addExerciseValidation,
+    isUserIdValid,
+    isDateRangeValid,
+    isLimitValid
+} = require('../middlewares/validation-middleware');
 
 //POST /api/exercise/new-user
 router.post('/new-user', (req, res, next) => {
@@ -85,5 +90,43 @@ router.post('/add', addExerciseValidation,  (req, res) => {
             res.send({err});
         });
 });
+
+
+/**
+ * GET /api/exercise/log?{userId}[&from][&to][&limit]
+ */
+router.post(`/log`, isUserIdValid, isDateRangeValid, isLimitValid, (req, res) => {
+
+
+    const logSearchEnum = {
+        BY_ID: 0,
+        BY_ID_LIMITED: 1,
+        BY_ID_RANGE: 2,
+        BY_ID_RANGE_LIMITED: 3,
+        BY_ID_FROM: 4,
+        BY_ID_FROM_LIMITED: 5,
+        BY_ID_TO: 6,
+        BY_ID_TO_LIMITED: 7
+    }
+
+
+    //both dates
+    if(req.query.from && req.query.to) {
+
+
+    // only from
+    } else if(req.query.from) {
+
+    // only to
+    } else if(req.query.to) {
+        
+    // no date range
+    } else {
+
+    }
+
+
+});
+
 
 module.exports = router;    
